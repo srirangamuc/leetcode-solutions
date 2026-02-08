@@ -3,15 +3,15 @@ class Solution {
         Deque<Long> stack = new ArrayDeque<>();
         for(int num:nums){
             stack.addLast((long)num);
-            while(stack.size() >= 2){
-                long last = (long)stack.removeLast();
-                long secondLast = (long)stack.removeLast();
-                if(last == secondLast){
-                    stack.addLast((long)last+secondLast);
-                }
-                else{
-                    stack.addLast((long)secondLast);
-                    stack.addLast((long)last);
+            while (stack.size() >= 2) {
+                long last = stack.removeLast();
+                long secondLast = stack.peekLast();
+
+                if (last == secondLast) {
+                    stack.removeLast();
+                    stack.addLast(last + secondLast);
+                } else {
+                    stack.addLast(last);
                     break;
                 }
             }
