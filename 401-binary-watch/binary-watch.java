@@ -1,10 +1,12 @@
 class Solution {
     public List<String> readBinaryWatch(int turnedOn) {
         List<String> res = new ArrayList<>();
-        for(int h = 0;h<12;h++){
-            for(int m = 0;m < 60;m++){
-                if(Integer.bitCount(h) + Integer.bitCount(m) == turnedOn){
-                    res.add(String.format("%d:%02d",h,m));
+        for(int i=0;i<1024;i++){
+            if(Integer.bitCount(i) == turnedOn){
+                int hours = i >> 6;
+                int mins = i & 0x3F;
+                if(hours < 12 && mins < 60){
+                    res.add(hours + ":" + (mins < 10 ? "0"+mins : mins ));
                 }
             }
         }
